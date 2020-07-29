@@ -1,39 +1,27 @@
 <template>
-  <div class="pa-5">
-    <v-text-field label="昵称" v-model="nick" />
-    <v-text-field label="密码" v-model="password" />
-    <v-btn
-      rounded
-      block
-      outlined
-      :disabled="!nick.length || password.length < 6"
-      @click="account"
-    >注册 / 登录</v-btn>
-    <p class="caption text-center mt-3">若账号不存在，则为注册</p>
+  <div class="pa-5 overflow-hidden">
+    <v-card class="mb-5 animate__animated animate__lightSpeedInRight" shaped to="game">
+      <v-card-title>立即匹配</v-card-title>
+      <v-card-subtitle>整起！拿奖！</v-card-subtitle>
+    </v-card>
+    <v-card class="mb-5 text-right animate__animated animate__lightSpeedInLeft" shaped to="rule">
+      <v-card-title class="flex-row-reverse">游戏规则</v-card-title>
+      <v-card-subtitle>没玩过《达芬奇密码》可以来瞅瞅</v-card-subtitle>
+    </v-card>
+    <v-card class="mb-5 animate__animated animate__lightSpeedInRight" shaped to="rule">
+      <v-card-title>排行榜</v-card-title>
+      <v-card-subtitle>最强大脑诞生于此</v-card-subtitle>
+    </v-card>
+    <v-card class="mb-5 text-right animate__animated animate__lightSpeedInLeft" shaped to="info">
+      <v-card-title class="flex-row-reverse">个人信息</v-card-title>
+      <v-card-subtitle>填写个人信息才可领奖哦~</v-card-subtitle>
+    </v-card>
   </div>
 </template>
 
 <script>
-import md5 from "blueimp-md5";
-import { mapActions } from "vuex";
-
 export default {
   name: "Home",
-  data: () => ({
-    nick: "",
-    password: "",
-  }),
-  methods: {
-    ...mapActions(["Account"]),
-    account() {
-      this.Account({
-        nick: this.nick,
-        password: md5(this.password),
-      });
-    },
-  },
 };
 </script>
 
-<style lang="less" scoped>
-</style>

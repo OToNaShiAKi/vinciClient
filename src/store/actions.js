@@ -1,13 +1,29 @@
-import axios from 'axios'
+import request from "./../plugins/request";
+import router from "./../router/";
+import { setItem } from "./../plugins/storage";
 
-const Actions = {};
+const Account = async ({ commit }, info) => {
+  try {
+    const result = await request.post("/user/account", info);
+    setItem("user", info);
+    commit("Account", result.data);
+    router.replace("/");
+  } catch (error) {
+    console.log(error);
+    router.replace("/login");
+  }
+};
 
-const BaseURL = process.env.NODE_ENV === 'development' ? '/vinci/' : 'http://hustmaths.top:8090/'
+const Info = async ({ commit }, info) => {
+  try {
+    const result = await request.post("/user/info", info);
+    commit("Info", result.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-Actions.Account = ({
-    commit
-}, info) => {
-    axios.post(BaseURL + 'account', info).then(res => {})
-}
-
-export default Actions
+export default {
+  Account,
+  Info,
+};
