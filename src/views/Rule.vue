@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <section>
-      <v-btn fixed to="/" style="border-radius: 0 18px 18px 0;" color="primary" dark>HOME</v-btn>
-    </section>
-  </div>
+  <v-btn fixed to="/" class="back" color="primary" dark>
+    <v-icon>mdi-home</v-icon>
+  </v-btn>
 </template>
 
 <script>

@@ -16,11 +16,16 @@ const Account = async ({ commit }, info) => {
 
 const Info = async ({ commit }, info) => {
   try {
-    const result = await request.post("/user/info", info);
-    commit("Info", result.data);
+    await request.post("/user/info", info);
+    commit("Info", info);
   } catch (error) {
     console.log(error);
   }
+};
+
+export const GameRank = async () => {
+  const result = await request.get("/user/rank");
+  return result.data;
 };
 
 export default {

@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <v-progress-linear indeterminate color="primary" absolute :active="progress" />
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
     <v-snackbar
       :color="notify.type"
       :timeout="1500"
@@ -22,3 +24,12 @@ export default {
   },
 };
 </script>
+
+<style lang="less">
+.back {
+  border-radius: 0 18px 18px 0 !important;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+</style>

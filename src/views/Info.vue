@@ -1,17 +1,17 @@
 <template>
   <div>
-    <section class="pa-5">
+    <section class="px-5 pt-5">
       <v-text-field label="姓名" v-model="name" />
       <v-text-field label="手机" type="tel" v-model="phone" />
       <v-text-field label="学号" type="tel" v-model="uid" />
-      <v-btn rounded block outlined :disabled="button" @click="info">提交</v-btn>
+      <v-btn rounded block outlined @click="info">提交</v-btn>
       <p class="caption text-center ma-3">领奖时请凭学生证及短信领取</p>
     </section>
+    <v-btn to="/" class="button" color="primary" dark>
+      <v-icon>mdi-home</v-icon>
+    </v-btn>
     <section>
-      <v-btn to="/" class="back" color="primary" dark>HOME</v-btn>
-    </section>
-    <section>
-      <v-card class="mx-5 animate__animated animate__bounceIn">
+      <v-card class="ma-5 animate__animated animate__bounceIn">
         <v-card-title class="justify-space-between">
           <span>积分：{{ user.integral }}</span>
           <span>排名：{{ user.rank }}</span>
@@ -33,9 +33,9 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapMutations } from "vuex";
 
-const PhoneRule = /^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/;
+const PhoneRule = /^1\d{10}$/;
 const UidRule = /^U20(16|17|18|19|20)\d{5}$/;
 
 export default {
@@ -46,22 +46,29 @@ export default {
     uid: "U2020",
   }),
   created() {
-    console.log(this.user);
     this.name = this.user.name;
     this.phone = this.user.phone;
     this.uid = this.user.uid;
   },
   computed: {
     ...mapState(["user"]),
-    button() {
-      const phone = PhoneRule.test(this.phone);
-      const uid = UidRule.test(this.uid);
-      return !phone || !uid || !this.name.length;
-    },
   },
   methods: {
     ...mapActions(["Info"]),
+    ...mapMutations(["Notify"]),
     info() {
+      if (!this.name.length) {
+        this.Notify({ type: "warning", message: "姓名不可为空" });
+        return;
+      }
+      if (!PhoneRule.test(this.phone)) {
+        this.Notify({ type: "warning", message: "手机号不合规" });
+        return;
+      }
+      if (!UidRule.test(this.uid)) {
+        this.Notify({ type: "warning", message: "学号不合规" });
+        return;
+      }
       const _id = this.$store.state.user._id;
       this.Info({
         _id,
@@ -75,10 +82,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.back {
+.button {
   border-radius: 0 18px 18px 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 .game {
   p {

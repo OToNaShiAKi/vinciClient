@@ -1,8 +1,15 @@
 <template>
   <div>
-    <v-overlay :value="overlay">
-      <v-progress-circular :size="120" indeterminate>匹配中</v-progress-circular>
+    <v-overlay :value="match.show" class="text-center">
+      <v-progress-circular :size="120" indeterminate>
+        匹配中
+        <br />
+        {{ match.group }} / 4
+      </v-progress-circular>
     </v-overlay>
+    <v-btn fixed to="/" v-show="match.show" class="back" color="primary" dark>
+      <v-icon>mdi-home</v-icon>
+    </v-btn>
   </div>
 </template>
 
@@ -12,7 +19,10 @@
 export default {
   name: "Game",
   data: () => ({
-    overlay: true,
+    match: {
+      show: true,
+      group: 0,
+    },
   }),
   created() {
     /* const user = this.$store.state.user;
