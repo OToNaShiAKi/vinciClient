@@ -25,6 +25,10 @@
         </tbody>
       </template>
     </v-simple-table>
+    <div class="caption ma-3">
+      <h6>排位优先级：</h6>
+      <p style="text-indent: 2em;">积分 > 第一名场次数 > 第二名场次数 > 第三名场次数 > 第四名场次数 > 注册时间</p>
+    </div>
     <v-btn fixed to="/" class="back" color="primary" dark>
       <v-icon>mdi-home</v-icon>
     </v-btn>

@@ -10,6 +10,7 @@ const Info = () => import("../views/Info.vue");
 const Rule = () => import("../views/Rule.vue");
 const Game = () => import("../views/Game.vue");
 const Rank = () => import("../views/Rank.vue");
+const NotFound = () => import("../views/NotFound.vue");
 
 Vue.use(VueRouter);
 
@@ -43,6 +44,10 @@ const routes = [
     path: "/rank",
     name: "Rank",
     component: Rank,
+  },
+  {
+    path: "*",
+    redirect: NotFound,
   },
 ];
 

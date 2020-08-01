@@ -1,11 +1,10 @@
 <template>
   <div>
-    <section class="px-5 pt-5">
+    <section class="pa-5">
       <v-text-field label="姓名" v-model="name" />
       <v-text-field label="手机" type="tel" v-model="phone" />
       <v-text-field label="学号" type="tel" v-model="uid" />
       <v-btn rounded block outlined @click="info">提交</v-btn>
-      <p class="caption text-center ma-3">领奖时请凭学生证及短信领取</p>
     </section>
     <v-btn to="/" class="button" color="primary" dark>
       <v-icon>mdi-home</v-icon>
@@ -26,7 +25,9 @@
       </v-card>
       <ul class="caption ma-5">
         <li>积分 = 第一名场次数 × 10 + 第二名场次数 × 7 + 第三名场次数 × 4 + 第四名场次数 × 1</li>
-        <li>中途离开没有积分</li>
+        <li>中途离开将自动淘汰没有积分</li>
+        <li>领奖时请凭学生证及短信领取</li>
+        <li>只有华科数院20届新生才可领奖哦</li>
       </ul>
     </section>
   </div>
@@ -35,7 +36,7 @@
 <script>
 import { mapActions, mapState, mapMutations } from "vuex";
 
-const PhoneRule = /^1\d{10}$/;
+const PhoneRule = /^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/;
 const UidRule = /^U20(16|17|18|19|20)\d{5}$/;
 
 export default {
@@ -48,7 +49,7 @@ export default {
   created() {
     this.name = this.user.name;
     this.phone = this.user.phone;
-    this.uid = this.user.uid;
+    this.uid = this.user.uid || "U2020";
   },
   computed: {
     ...mapState(["user"]),

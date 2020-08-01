@@ -26,7 +26,7 @@ export default {
         this.Notify({ type: "warning", message: "昵称不可为空" });
         return;
       }
-      if (!this.password.length < 6) {
+      if (this.password.length < 6) {
         this.Notify({ type: "warning", message: "密码至少为6位" });
         return;
       }

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-// import Vinci from "./../plugins/vinci";
+import Vinci from "./../plugins/vinci";
 
 export default {
   name: "Game",
@@ -23,11 +23,12 @@ export default {
       show: true,
       group: 0,
     },
+    game: null,
   }),
   created() {
-    /* const user = this.$store.state.user;
+    const user = this.$store.state.user;
     this.game = new Vinci(user);
-    console.log(this.game); */
+    console.log(this.game);
   },
 };
 </script>

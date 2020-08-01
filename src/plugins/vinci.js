@@ -1,6 +1,6 @@
 import io from "socket.io-client";
 
-class Vinci {
+class Player {
   constructor(options) {
     this.player = options._id;
     this.integral = options.integral;
@@ -18,4 +18,4 @@ class Vinci {
   }
 }
 
-export default Vinci;
+export default Player;
