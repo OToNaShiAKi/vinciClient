@@ -23,7 +23,7 @@
         <v-card-title>确认退出？</v-card-title>
         <v-card-actions>
           <v-btn color="warning" text @click="dialog = false">取消</v-btn>
-          <v-spacer></v-spacer>
+          <v-spacer />
           <v-btn color="error" text @click="logout">确认</v-btn>
         </v-card-actions>
       </v-card>

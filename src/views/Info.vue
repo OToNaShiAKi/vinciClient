@@ -12,10 +12,10 @@
     <section>
       <v-card class="ma-5 animate__animated animate__bounceIn">
         <v-card-title class="justify-space-between">
-          <span>积分：{{ user.integral }}</span>
+          <span>{{ user.nick }}</span>
           <span>排名：{{ user.rank }}</span>
         </v-card-title>
-        <v-card-subtitle>游戏场次：{{ user.race.first + user.race.second + user.race.third + user.race.forth }} 场</v-card-subtitle>
+        <v-card-subtitle>积分：{{ user.integral }}</v-card-subtitle>
         <v-card-text class="game d-flex flex-wrap justify-space-between">
           <p>第一名：{{ user.race.first }} 场</p>
           <p>第二名：{{ user.race.second }} 场</p>
